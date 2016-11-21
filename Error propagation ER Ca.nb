@@ -1,0 +1,189 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5761,        180]
+NotebookOptionsPosition[      5071,        150]
+NotebookOutlinePosition[      5424,        166]
+CellTagsIndexPosition[      5381,        163]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Error propagation for method 1", "Section",
+ CellChangeTimes->{{3.687641244414864*^9, 3.6876412558346157`*^9}, {
+  3.688152000136845*^9, 3.6881520027603188`*^9}, {3.688749480688582*^9, 
+  3.688749481187702*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"DeltaF1Error", "=", "0.1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"DeltaF1Sat", "=", "1.95"}], ";", " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"First", " ", "indicator", " ", "data"}], " ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"Rd1", "=", "45"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Kd1", "=", "150"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"n1", "=", "1.6"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.688151567586589*^9, 3.6881515684016953`*^9}, {
+  3.688151894637725*^9, 3.688151899830587*^9}, {3.688151957319173*^9, 
+  3.6881519590558147`*^9}, {3.688151991915907*^9, 3.6881520147389936`*^9}, {
+  3.6881527507189817`*^9, 3.688152768393415*^9}, {3.688153073872108*^9, 
+  3.6881530753818493`*^9}, {3.688329586853468*^9, 3.688329602564226*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Ca", "[", 
+   RowBox[{"ratio_", ",", "Kd_", ",", "Rf_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"Kd", 
+   RowBox[{
+    RowBox[{"(", 
+     FractionBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"1", "/", "ratio"}], "-", 
+        RowBox[{"1", "/", "Rf"}]}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "-", 
+        RowBox[{"1", "/", "ratio"}]}], ")"}]], ")"}], "^", 
+    RowBox[{"(", 
+     RowBox[{"1", "/", "n"}], ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.687640640138187*^9, 3.687640737232128*^9}, {
+  3.687640780621316*^9, 3.687640789066382*^9}, {3.688152247621764*^9, 
+  3.6881522495624638`*^9}, {3.688152741423925*^9, 3.6881527435811462`*^9}, {
+  3.688153077656578*^9, 3.688153081454565*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ErrorCa", "[", 
+   RowBox[{"ratio_", ",", "Kd_", ",", "Rf_", ",", "n_", ",", "RatioErr_"}], 
+   "]"}], "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Abs", "[", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"Ca", "[", 
+        RowBox[{"ratio", ",", "Kd", ",", "Rf", ",", "n"}], "]"}], ",", 
+       "ratio"}], "]"}], "]"}], "*", "RatioErr"}], "//", 
+   "Simplify"}]}]], "Input",
+ CellChangeTimes->{{3.687640750940345*^9, 3.6876408204284067`*^9}, {
+  3.687640887076291*^9, 3.687640950680958*^9}, {3.6881540640132093`*^9, 
+  3.688154072179247*^9}}],
+
+Cell[BoxData[
+ RowBox[{"RatioErr", " ", 
+  RowBox[{"Abs", "[", 
+   FractionBox[
+    RowBox[{"Kd", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", "Rf"}], ")"}], " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{"ratio", "-", "Rf"}], 
+        RowBox[{"Rf", "-", 
+         RowBox[{"ratio", " ", "Rf"}]}]], ")"}], 
+      FractionBox["1", "n"]]}], 
+    RowBox[{"n", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", "ratio"}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"ratio", "-", "Rf"}], ")"}]}]], "]"}]}]], "Output",
+ CellChangeTimes->{
+  3.687640975540142*^9, 3.688151645210363*^9, 3.688152034981529*^9, 
+   3.688152252593693*^9, {3.6881527450503283`*^9, 3.688152776878825*^9}, 
+   3.688153082642198*^9, 3.6881533234407673`*^9, 3.688154072638276*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ErrorCa", "[", 
+  RowBox[{
+  "DeltaF1Sat", ",", "Kd1", ",", "Rd1", ",", "n1", ",", "DeltaF1Error"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.687640988327425*^9, 3.687641009804541*^9}, {
+  3.6876411448648863`*^9, 3.687641182167041*^9}, {3.688151585233251*^9, 
+  3.688151641594709*^9}, {3.688152027815118*^9, 3.6881520281585283`*^9}}],
+
+Cell[BoxData["16.208593194639477`"], "Output",
+ CellChangeTimes->{
+  3.687641010822959*^9, {3.687641171850222*^9, 3.687641182368146*^9}, {
+   3.6881516421276417`*^9, 3.688151645914035*^9}, 3.688152036513628*^9, 
+   3.6881522605344048`*^9, {3.688152753220972*^9, 3.688152777728928*^9}, 
+   3.688153083809381*^9, 3.688154075679517*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Ca", "[", 
+  RowBox[{"DeltaF1Sat", ",", "Kd1", ",", "Rd1", ",", "n1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.68815204967598*^9, 3.68815207030623*^9}}],
+
+Cell[BoxData["150.6570318585837`"], "Output",
+ CellChangeTimes->{
+  3.688152070910877*^9, 3.688152263318563*^9, {3.688152753887113*^9, 
+   3.688152779230156*^9}, 3.6881530850921307`*^9, 3.688154076530561*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 652},
+WindowMargins->{{84, Automatic}, {Automatic, 5}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 217, 3, 64, "Section"],
+Cell[799, 27, 895, 19, 114, "Input"],
+Cell[1697, 48, 745, 20, 51, "Input"],
+Cell[CellGroupData[{
+Cell[2467, 72, 584, 16, 46, "Input"],
+Cell[3054, 90, 834, 24, 64, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3925, 119, 358, 7, 28, "Input"],
+Cell[4286, 128, 333, 5, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4656, 138, 176, 3, 28, "Input"],
+Cell[4835, 143, 208, 3, 28, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
